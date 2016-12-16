@@ -1,0 +1,13 @@
+.idea
+*.iml
+
+.DS_Store
+
+.gradle
+build
+classes
+gradle-app.setting
+gradle-wrapper.jar
+gradle-wrapper.properties
+.gradletasknamecache
+
