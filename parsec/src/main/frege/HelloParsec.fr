@@ -1,0 +1,25 @@
+module HelloParsec where
+
+import Text.ParserCombinators.Parsec.Parsec
+
+mySeparator = Parsec.spaces >> Parsec.char ',' >> Parsec.spaces
+
+parse :: GenParser Char () a -> String -> Either ParseError a
+parse rule text = Parsec.parse rule "(source)" (toList text)
+
+myParser = do
+    letters <- Parsec.many1 Parsec.letter
+    Parsec.spaces
+    digits <- Parsec.many1 Parsec.digit
+    return (letters,digits)
+
+myPairs = Parsec.many $ do
+    pair <- myParser
+    mySeparator
+    return pair
+
+main = do
+    let result = parse myPairs "hello 1, byebye 2,"
+    case result of
+        Right v -> putStrLn $ "success!: " ++ show v
+        Left err -> putStrLn $ "whoops, error: " ++ show err
