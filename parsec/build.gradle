@@ -5,7 +5,13 @@ mainClassName = "HelloParsec"
 
 dependencies {
     compile dep.frege
+    runtime dep.frege
     compile dep.nativeGen
+    runtime dep.nativeGen
+    compile dep.replCore
+    runtime dep.replCore
+    compile dep.fj
+    runtime dep.fj
 }
 
 fregeNativeGen {
